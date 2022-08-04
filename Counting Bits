@@ -1,0 +1,19 @@
+class Solution {
+    public int[] countBits(int num) {
+        int[] dp = new int[num+1];
+        
+        dp[0] = 0;
+        int nearest = 0;
+        for (int k = 1; k <= num; k++) {
+            if ((k & (k-1)) == 0) {
+                dp[k] = 1;
+                nearest = k;
+            } else {
+                dp[k] = dp[k-nearest] + dp[nearest];
+            }
+        }
+        
+        return dp;
+    
+    }
+}
